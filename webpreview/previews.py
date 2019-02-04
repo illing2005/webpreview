@@ -31,7 +31,7 @@ class PreviewBase(object):
 
         # if no schema add http as default
         try:
-            res = requests.get(url, timeout=timeout, headers=headers)
+            res = requests.get(url, timeout=timeout, headers=headers, verify=False)
         except (ConnectionError, HTTPError, Timeout, TooManyRedirects):
             raise URLUnreachable("The URL does not exist.")
         except MissingSchema: # if no schema add http as default
@@ -54,7 +54,7 @@ class PreviewBase(object):
     def get_content(url, timeout, headers):
         # throw URLUnreachable exception for just incase
         try:
-            res = requests.get(url, timeout=timeout, headers=headers)
+            res = requests.get(url, timeout=timeout, headers=headers, verify=False)
         except (ConnectionError, HTTPError, Timeout, TooManyRedirects):
             raise URLUnreachable("The URL is unreachable.")
 
